@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from web.views import toolbox_page, query_req
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('toolbox/', toolbox_page),
+    path('queryCode/', query_req),
+
 ]

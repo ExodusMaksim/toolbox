@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>toolbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    {% load static %}
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href=" {% static "css/icons.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href=" {% static "css/app-creative.min.css" %}" rel="stylesheet" type="text/css" id="light-style" />
+    <link href=" {% static "css/app-creative-dark.min.css" %}" rel="stylesheet" type="text/css" id="dark-style" />
+
+</head>
+
+<body class="loading" data-layout="topnav"
+      data-layout-config='{"layoutBoxed":false,"darkMode":false,"showRightSidebarOnStart": true}'>
+<!-- Begin page -->
+<div class="wrapper">
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Topbar Start -->
+            <div class="navbar-custom topnav-navbar topnav-navbar-dark">
+                <div class="container-fluid">
+                    <!-- LOGO -->
+                    <a href="" class="topnav-logo">
+                            <span class="topnav-logo-lg">
+                                <h3>TOOLBOX</h3>
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <!-- 高度的占位-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <!-- 标题 -->
+                                    <h4>Interface Test</h4>
+                                    <div class="input-group mb-3">
+                                        <!-- URL输入框 -->
+                                        <input type="text" class="form-control" placeholder="Enter request URL"
+                                               name="reqURL">
+                                        <!-- 发送按钮 -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button" id="button-addon2"
+                                                    onclick="send_req()">Send
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- 单选 -->
+                                    <div class="radio" style="float: left; margin-right: 30px;">
+                                        <label><input type="radio" name="method" id="get" checked> GET</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="method" id="post"> POST</label>
+                                    </div>
+
+                                    <!-- 多行文本框 -->
+                                    <span>request</span>
+                                    <textarea class="form-control" rows="3" id="request"></textarea>
+                                    <br>
+                                    <span>response</span>
+                                    <textarea class="form-control" rows="6" id="response"
+                                              placeholder="Request"></textarea>
+                                </div> <!-- end table-responsive-->
+
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="Query Verification code">
+                                    <div class="input-group mb-3">
+                                        <!-- URL输入框 -->
+                                        <input type="text" class="form-control" placeholder="Enter Phone Number"
+                                               name="phoneNum">
+                                        <!-- 发送按钮 -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button" id="button-query"
+                                                    onclick="query_ver_code()">Send
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- 单选 -->
+                                    <div class="radio" style="float: left; margin-right: 30px;">
+                                        <label><input type="radio" name="method" id="get" checked> GET</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="method" id="post"> POST</label>
+                                    </div>
+
+                                    <!-- 多行文本框 -->
+                                    <span>request</span>
+                                    <textarea class="form-control" rows="3" id="request"></textarea>
+                                    <br>
+                                    <span>response</span>
+                                    <textarea class="form-control" rows="6" id="resultCode"
+                                              placeholder="Request"></textarea>
+                                </div> <!-- end table-responsive-->
+
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div>
+                    <!-- end col-->
+
+                </div>
+                <!-- end row-->
+
+            </div>
+            <!-- container -->
+
+        </div>
+        <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2018 - 2020 ©重定向科技 itest.info
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+</div>
+<!-- END wrapper -->
+
+<div class="rightbar-overlay"></div>
+<!-- /Right-bar -->
+
+<!-- bundle -->
+<script src="https://coderthemes.com/hyper/creative/assets/js/vendor.min.js"></script>
+<script src="https://coderthemes.com/hyper/creative/assets/js/app.min.js"></script>
+
+<!-- Todo js -->
+<script src="https://coderthemes.com/hyper/creative/assets/js/ui/component.todo.js"></script>
+<!-- end demo js-->
+</body>
+
+<script>
+      function send_req(){
+        //window.alert("点击send按钮");
+        var url = document.querySelector("[name=reqURL]").value;
+        var methods = document.querySelectorAll("[name=method]");
+        for(i=0; i<methods.length; i++){
+          if(methods[i].checked == true){
+            var reqMethod = methods[i].id;
+            break
+          }
+        }
+
+        var params = document.querySelector("#request").value;
+
+        console.log("URL", url);
+        console.log("method", reqMethod);
+        console.log("request", params);
+
+        $.post("/req/",{
+            req_url: url,
+            req_method: reqMethod,
+            req_params: params,
+          },
+          function(resp){
+            console.log("adffasd", resp.message);
+            if(resp.code == 10200){
+              document.querySelector("#response").innerText = resp.data;
+            }else{
+              document.querySelector("#response").innerText = resp.message;
+            }
+          });
+      }
+
+      function query_ver_code() {
+          var phoneNum = document.querySelector("[name=phoneNum]").value
+          $.post("/queryCode/", {
+              phone_Num: phoneNum,
+              },
+              function (resp) {
+              if (resp != null){
+                  document.querySelector("#resultCode").innerText = resp.data;
+              }
+
+              }
+          )
+
+      }
+
+
+</script>
+</html>
